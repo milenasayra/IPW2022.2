@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Milena Sayra Silva Macedo</title>
+</head>
+<body>
+	<form action="http://191.252.62.149:8080/pweb/salvar.jsp" method="post">
+		Login:<br/>
+		<input type="text" name="login"><br/>
+		Senha:<br/>
+		<input type="password" name="senha"><br/>
+		Confirmar a Senha:<br/>
+		<input type="password" name="confirmaSenha"><br/>
+		Nome:<br/>
+		<input type="text" name="nome"><br/>
+		Sexo:<br/>
+		<input type="radio" name="M">Masculino<br/>
+		<input type="radio" name="M">Feminino<br/>
+		Email:<br/>
+		<input type="email" name="Email"><br/>
+		Interesses:<br/>
+		<input type="checkbox" name="interesses">Futebol<br/>
+		<input type="checkbox" name="interesses">Política<br/>
+		<input type="checkbox" name="interesses">Economia<br/>
+		<input type="checkbox" name="interesses">Carros<br/>
+		<input type="checkbox" name="interesses">Celebridades<br/>
+		<br/>
+		Estado:<br/>
+			<select id="estados" nome="estados">
+				<option value="Piaui">PI</option>
+				<option value="Ceara">CE</option>
+				<option value="Maranhao">MA</option>
+			</select><br/>
+		Observações:<br/>
+			<textarea name = "message" rows="5" cols="40"></textarea><br/>
+				<input type="submit" value="Enviar">
+	</form>
+</body>
+</html>
