@@ -1,0 +1,99 @@
+body{
+	background-image: url("fundo.png");
+	font-family: Georgia, Times, serif;
+	line-height: 1.4em;
+}
+#wrapper {
+	background-color: white;
+	width: 940px;
+	margin: 25px auto;
+	border: 1px outset;
+}
+header {
+	background-image: url("fundo2.png");
+	height: 100px;
+	width: 58.8em;
+	
+	position: relative;
+}
+nav {
+	position: absolute;
+	width: 70%;
+	padding-top: 30px;
+	padding-left: 30px;
+}
+nav ul {
+	padding: 5px 5px 10px 10px;
+}
+nav li {
+	display: inline;
+}
+nav a {
+	color: #EED5D2;
+	text-decoration: none;
+}
+#nav a:hover, #nav a.current {
+	color: red;
+}
+#nav a:hover {
+	text-decoration: underline;
+}
+main {
+	width: 640px;
+	float: left;
+	border-right: 1px solid #FFF0F5;
+}
+article {
+	overflow: auto;
+}
+article figure {
+	float: left;
+	border: 1px outset;
+	margin: 20px;
+
+}
+article figure figcaption {
+	text-align: center;
+	color: #0097d7;
+}
+article h2 {
+	font-size: 24px;
+	color: #0097d7;
+}
+article h3 {
+	font-size: 19px;
+	color: #EED5D2;
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+article .hgroup {
+	margin-top: 30px;
+}
+aside {
+	width: 250px;
+	float: left;
+	padding: 0px 15px;
+}
+aside h2 {
+	padding: 30px 0px 20px;
+	font-size: 24px;
+	color: #0097d7;
+}
+aside .ladodireito li {
+	padding: 10px;
+	border-bottom: 1px solid #FFF0F5;
+}
+aside .ladodireito li:hover {
+	background-color: #FFF0F5;
+}
+aside .ladodireito li a {
+	text-decoration: underline;
+}
+aside .ladodireito li a:hover {
+	color: red;
+}
+footer {
+	clear: both;
+	background-color: #0097d7;
+	padding: 5px 30px;
+}
