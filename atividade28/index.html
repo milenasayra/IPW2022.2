@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testando animação</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+		.box {
+			position: relative;
+			left: 10px;
+			top: 10px;
+			width: 200px;
+			height: 200px;
+			background-color: #6dc099;
+			border: 5px outset;
+			animation: minhaAnimacao 2s 3s 3 alternate;
+		}
+		.box:hover {
+			border: solid 5px black;
+			transition: border 3s 2s;
+		}
+		@keyframes minhaAnimacao {
+
+				0%{
+					background: #969ed1;
+					transform: rotate(90deg);
+				}
+
+				25%{
+					background: #9856b5;
+					transition: 0s 5s;
+					transform: rotate(180deg);
+				}
+				50%{
+					transform: rotate(270deg);
+					transition: 0s 5s;
+					background: #472f6b; 
+				
+					}
+				75%{
+					transform: rotate(360deg);
+					transition: 0s 5s;
+					background: #db76a9; 
+					
+
+			}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<h3>Obs: passe o mouse sobre o quadrado!</h3>
+</body>
+</html>
