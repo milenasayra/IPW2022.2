@@ -1,0 +1,32 @@
+#container-a {
+	width: 250px;
+}
+.box1 {
+	background: #367d91;
+	width: 200px;
+	height: 200px;
+	float: left;
+	border-radius: 200px 0px 0px 0px;
+
+}
+.box2 {
+	background: #4f3795;
+	width: 200px;
+	height: 200px;
+	border-radius: 0px 200px 0px 0px;
+	margin-left: 200px;
+}
+.box3 {
+	background: #297538;
+	width: 200px;
+	height: 200px;
+	float: left;
+	border-radius: 0px 0px 0px 200px;
+}
+.box4 {
+	background: #622237;
+	width: 200px;
+	height: 200px;
+	float: left;
+	border-radius: 0px 0px 200px 0px;
+}
