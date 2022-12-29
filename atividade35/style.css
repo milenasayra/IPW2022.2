@@ -1,0 +1,29 @@
+#container {
+	height: 350px;
+	width: 400px;
+	margin-top: 100px;
+	margin-left: 300px;
+	display: inline-block;
+
+}
+h4 {
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	color: #c3cae4;
+}
+.buttom {
+	position: center;
+}
+.perfil {
+	border: 1px solid;
+	text-align: center;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+}
+h3 {
+	text-align: center;
+}
+.usuario {
+	padding-left: 70px;
+}
+p {
+	font-family: "Brush Script MT", Lucida Handwriting, cursive;
+}
