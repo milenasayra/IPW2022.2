@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Trabalho JQuery Webservice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Adicionando JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Adicionando Javascript -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Quando o botão é clicado.
+            $("#mybtn").click(function () {
+                //Nova variável "cep".
+                var cep = $("#cep").val();
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#rua").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#uf").val("...");
+                $("#ibge").val("...");
+                //Consulta o webservice viacep.com.br/
+                var url = "https://viacep.com.br/ws/" + cep + "/json/?callback=?";
+                $.getJSON(url, function (retorno) {
+                    if (!("erro" in retorno)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#rua").val(retorno.logradouro);
+                        $("#bairro").val(retorno.bairro);
+                        $("#cidade").val(retorno.localidade);
+                        $("#uf").val(retorno.uf);
+                        $("#ibge").val(retorno.ibge);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        alert("CEP não encontrado.");
+                    }
+                });
+            });/* FIM DA FUNÇÃO viacep*/
+
+            $("#btn1").click(function () {
+                var data1 = $("#data1").val();
+                var url = "http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.dataextenso.logic?string=" + data1;
+                $.getJSON(url, function (retorno) {
+                    if (!("erro" in retorno)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#dia").val(retorno.dia);
+                        $("#mes").val(retorno.mes);
+                        $("#ano").val(retorno.ano);
+                        $("#extenso").val(retorno.extenso);
+                    } //end if.
+                    else {
+                        alert("Erro");
+                    }
+                });
+            });/* FIM DA FUNÇÃO dataextenso*/
+
+
+            $("#somaData").click(function () {
+                var sdata = $("#sdata").val();
+                var somar = $("#somar").val();
+                var url = `http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.datasoma.logic?string=${sdata};${somar}`;
+                $.getJSON(url, function (retorno) {
+                    if (!("erro" in retorno)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#smDia").val(retorno.dia);
+                        $("#smMes").val(retorno.mes);
+                        $("#smAno").val(retorno.ano);
+                        $("#smExtenso").val(retorno.extenso);
+                    } //end if.
+                    else {
+                        alert("Erro");
+                    }
+                });
+            });/* FIM DA FUNÇÃO data adição*/
+
+            $("#difData").click(function () {
+                var miData = $("#miData").val();
+                var subData = $("#subData").val();
+                var url = `http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.datadiferenca.logic?string=${miData};${subData}`;
+                $.getJSON(url, function (retorno) {
+                    if (!("erro" in retorno)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#difer").val(retorno.diferenca);
+                    } //end if.
+                    else {
+                        alert("Erro");
+                    }
+                });
+            });/* FIM DA FUNÇÃO data diferença*/
+
+            $("#btnConv").click(function () {
+                var dataConv = $("#dataConv").val();
+                var url = `http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.dataconverte.logic?string=${dataConv}`;
+                $.getJSON(url, function (retorno) {
+                    if (!("erro" in retorno)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#convert").val(retorno.dataconvertida);
+                    } //end if.
+                    else {
+                        alert("Erro");
+                    }
+                });
+            });/* FIM DA FUNÇÃO data convertida*/
+
+        }); /* FIM DA FUNÇÃO ready*/
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+    <!-- Inicio do formulario -->
+    <div>
+        <label> <strong> Cep: </strong>
+            <input name="cep" type="text" id="cep" value="" placeholder="Somente números" size="10"
+                maxlength="9" /></label> 
+        <button class="btn btn-success" id="mybtn"><i class="fa-solid fa-hand-pointer"></i>OK</button>
+        <br />
+        <hr>
+
+        <label> <strong>Rua:</strong><br />
+            <input name="rua" type="text" id="rua" size="60" /></label><br />
+        <label> <strong>Bairro:</strong><br />
+            <input name="bairro" type="text" id="bairro" size="40" /></label><br />
+        <label> <strong>Cidade:</strong><br />
+            <input name="cidade" type="text" id="cidade" size="40" /></label><br />
+        <label> <strong>Estado:</strong><br />
+            <input name="uf" type="text" id="uf" size="2" /></label><br />
+        <label> <strong>IBGE:</strong><br />
+            <input name="ibge" type="text" id="ibge" size="8" /></label><br />
+        <hr>
+
+    </div>
+
+
+
+
+
+
+
+    <div>
+        <h1>Data Extenso - EXEMPLO FEITO PELO PROFESSOR</h1>
+        <div>Recebe uma data no formato dd/mm/aaaa e retorna um texo com a data por extenso</div>
+
+        <div>URL Exemplo:<a target="_blank"
+                href="http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.dataextenso.logic?string=21/12/2022">
+                http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.dataextenso.logic?string=21/12/2022</a></div>
+
+        <div>Onde 21/12/2022 é o parâmetro passado que deve ser lido do input. </div>
+
+        <br>
+
+        <div>
+            <!-- INPUTS E BOTÕES -->
+            <label><strong>Data:</strong>
+                <input name="data" type="text" id="data1" placeholder="dd/mm/aaaa" size="10" maxlength="10" /></label>
+            <button id="btn1" class="btn btn-success"><i class="fa-solid fa-hand-pointer"></i>OK</button>
+            <br />
+            <hr>
+            <label><strong>Dia:</strong><br />
+                <input name="dia" type="text" id="dia" size="40" /></label><br />
+            <label><strong>Mês</strong><br />
+                <input name="mes" type="text" id="mes" size="40" /></label><br />
+            <label><strong>Ano:</strong><br />
+                <input name="ano" type="text" id="ano" size="40" /></label><br />
+            <label><strong>Extenso:</strong><br />
+                <input name="extenso" type="text" id="extenso" size="40" /></label><br />
+        </div>
+    </div>
+
+    <div>
+        <hr>
+        <h1>Data Soma</h1>
+        <div>Recebe uma data no formato dd/mm/aaaa e um número inteiro. Retorna a data correspondente a soma desse
+            número com data informada.</div>
+
+        <div>URL Exemplo:<a target="_blank"
+                href="http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.datasoma.logic?string=21/12/2022;10">
+                http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.datasoma.logic?string=21/12/2022;10</a></div>
+
+        <div>Onde 21/12/2022 e 10 são os parâmetros passados separados por ; </div>
+        <br>
+        <label><strong> Informe uma data:</strong>
+            <input type="text" id="sdata" placeholder="dd/mm/aaaa" size="10" maxlength="10" />
+        </label><br>
+        <label><strong> Informe outra data:</strong>
+            <input type="number" id="somar" placeholder="dd/mm/aaaa" size="10" maxlength="10" />
+        </label><br>
+        <button class="btn btn-success" id="somaData"><i class="fa-solid fa-hand-pointer"></i>OK</button>
+        <br />
+        <hr>
+        <label><Strong> Dia:</Strong><br />
+            <input name="smDia" type="text" id="smDia" size="40" /></label><br />
+        <label><strong>Mês:</strong><br />
+            <input name="smMes" type="text" id="smMes" size="40" /></label><br />
+        <label><strong>Ano:</strong><br />
+            <input name="smAno" type="text" id="smAno" size="40" /></label><br />
+        <label><strong>Extenso:</strong><br />
+            <input name="smExtenso" type="text" id="smExtenso" size="40" /></label><br />
+
+    </div>
+
+
+    <div>
+        <hr>
+        <h1>Data Diferença</h1>
+        <div>Recebe duas datas no formato dd/mm/aaaa. Retorna a diferença em dias entre a duas datas.</div>
+
+        <div>URL Exemplo:<a target="_blank"
+                href="http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.datadiferenca.logic?string=21/12/2022;21/01/2023">
+                http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.datadiferenca.logic?string=21/12/2022;21/01/2023</a>
+        </div>
+
+        <div>Onde 21/12/2022 e 21/01/2023 são os parâmetros passados separados por ; </div>
+        <br>
+
+        <label><strong>Entre com a data Inicial:</strong>
+            <input type="text" id="miData" placeholder="dd/mm/aaaa" size="10" maxlength="10" />
+        </label>
+        <label><strong>Entre com a data Final:</strong>
+            <input type="text" id="subData" placeholder="dd/mm/aaaa" size="10" maxlength="10" />
+        </label>
+        <button class="btn btn-success" id="difData"><i class="fa-solid fa-hand-pointer"></i>OK</button>
+        <br />
+        <hr>
+        <label><strong> Diferença em dias:</strong><br />
+            <input name="difer" type="text" id="difer"/></label><br />
+    </div>
+
+    <div>
+        <hr>
+        <h1>Data Converte</h1>
+        <div>Recebe uma data no formato dd/mm/aaaa. Retorna a data no formato yyyy-mm-dd.</div>
+
+        <div>URL Exemplo:<a target="_blank"
+                href="http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.dataconverte.logic?string=21/12/2022">
+                http://zpfvzz.hospedagemelastica.com.br/netlab/admin/admin.dataconverte.logic?string=21/12/2022</a>
+        </div>
+
+        <div>Onde 21/12/2022 é o parâmetros passado para a api </div>
+        <br>
+
+        <label><strong>Data:</strong>
+            <input type="text" id="dataConv" placeholder="dd/mm/aaaa" size="10" maxlength="10" />
+        </label>
+        <button class="btn btn-success" id="btnConv"><i class="fa-solid fa-hand-pointer"></i>OK</button>
+        <br />
+        <hr>
+        <label><strong>Data Convertida:</strong><br />
+        <input name="convert" type="text" id="convert"/></label><br />
+
+    </div>
+
+    <br><br>
+
+
+    </div>
+</body>
+
+</html>
+
+apidatas.html
+Exibindo apidatas.html…
